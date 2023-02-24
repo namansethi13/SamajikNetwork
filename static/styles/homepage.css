@@ -1,0 +1,72 @@
+* {
+	margin: 0px; 
+	padding: 0px; 
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: 'poppins', sans-serif;
+}
+body{
+  background-image: url(/static/styles/images/low-poly-grid-haikei.png);
+  display: grid;
+  place-items: center;
+}
+
+
+.wrapper{
+    display: flex;
+    
+}
+
+
+.logo{
+    color: white;
+    font-family: 'Cabin', sans-serif;
+    padding: 20px;
+    display: block;
+  }
+.logo h1{
+    font-size: 10rem;
+}
+  
+.container-login100 { 
+    
+    width: min-content;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    
+  }
+  
+  .wrap-login100 {
+    height:min-content;
+    width: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .login100-form-bgbtn{
+    display: flex;
+    justify-content:space-evenly;
+    border-radius:;
+    
+  }
+  .login100-form-bgbtn button{
+    background: #062d47;
+    font-family: 'Poppins';
+    font-size: 2em;
+    color: #fff;
+    line-height: 1.2;
+    width: 5em;
+    height: 2em;
+    padding: 10px;
+    border: none;
+    border-radius: 10% ;
+  }
