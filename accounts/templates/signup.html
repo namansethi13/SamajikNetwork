@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form method="post">
+        {% csrf_token %}
+    {{ signup_form.as_p }}
+    <button type="submit" >
+        Register
+     </button>
+    </form>
 </body>
 </html>
