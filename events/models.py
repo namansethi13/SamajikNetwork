@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from accounts.models import NGO
+from accounts.models import NGO,Volunteer
 CHOICES = [
         ('1', 'ONLINE'),
         ('2', 'OFFLINE'),
@@ -20,5 +20,10 @@ class events(models.Model):
     nature = models.CharField(max_length=200)
     noofvolunteers = models.IntegerField()
     id = models.ForeignKey(NGO,on_delete=models.CASCADE)
+    
+class volunteer_event():
+    event_id =models.ForeignKey(events,on_delete=models.CASCADE)
+    id = models.ForeignKey(Volunteer,on_delete=models.CASCADE)
+    hours=models.IntegerField()
 
     
