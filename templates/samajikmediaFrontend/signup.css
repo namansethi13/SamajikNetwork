@@ -5,21 +5,29 @@ h1{
     font-family:'Poppins';
 }
 
-
+body{
+	display: flex;
+	justify-content: center;
+}
 .wrapper{
     padding: 50px;
-    width: 400px;
-    position:absolute;
-    top: 35%;
-    left: 35%;
+    width: 800px;
     background: white;
     border-radius: 20px ;
+	display: flex;
+	margin-top: 5%;
+	gap:2rem
     
     
 }
-/* .formwrapper{
-    display: none;
-} */
+
+.formwrapper{
+	width: 450px;
+}
+.second{
+	margin-top: 100px;;
+}
+
 .form-control{
    margin-bottom: 15px;
 }
@@ -32,10 +40,12 @@ span{
     display: none;
 }
 
-
+button{
+	width: 300px;
+}
 .r-pill {
 	border: 0;
-	padding: 0;
+	padding-bottom:20px;
 	margin: 0;
 }
 

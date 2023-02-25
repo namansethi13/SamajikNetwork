@@ -25,29 +25,29 @@
     <h1 style="color:white">Samajik Network</h1>
         
     <div class="wrapper">
-      <div>
       <!-- <label for="id_role">Role:</label> -->
-      <fieldset class="r-pill">
-        <legend>Sign up as</legend>
-
-        <div class="r-pill__group">
-          <span class="r-pill__item">
-            <input type="radio" id="NGO" name="radios" checked>
-            <label for="r1">NGO</label>
-          </span>
-
-          <span class="r-pill__item">
-            <input type="radio" id="VOLUNTEER" name="radios">
-            <label for="r2">VOLUNTEER</label>
-          </span>
-
-        </div>
-      </fieldset>
-        <select name="role" class="hidden" id="id_role">
-            <option value="NGO" >Ngo</option>
-            <option value="VOLUNTEER" ">Volunteer</option>
-        </select>
-        <div class="formwrapper">     
+     
+        <div class="formwrapper"> 
+          <fieldset class="r-pill">
+            <legend>Sign up as</legend>
+    
+            <div class="r-pill__group">
+              <span class="r-pill__item">
+                <input type="radio" id="NGO" name="radios" checked>
+                <label for="r1">NGO</label>
+              </span>
+    
+              <span class="r-pill__item">
+                <input type="radio" id="VOLUNTEER" name="radios">
+                <label for="r2">VOLUNTEER</label>
+              </span>
+    
+            </div>
+          </fieldset>
+            <select name="role" class="hidden" id="id_role">
+                <option value="NGO" >Ngo</option>
+                <option value="VOLUNTEER" ">Volunteer</option>
+            </select>    
             <span class="form-group">
               <label for="id_username" class="NGO Volunteer">Username:</label>
               <input type="text" name="username" class="form-control NGO Volunteer" required="" id="id_username">
@@ -108,9 +108,6 @@
               
               
             </span>
-
-          </div>
-          <div>
             <span  class="form-group">
               <label for="id_phone" class="NGO Volunteer">Phone:</label>
               <input type="number" name="phone"  class="form-control NGO Volunteer" required="" id="id_phone">
@@ -129,6 +126,9 @@
           
 
             <br>
+          </div>
+          <div class="second">
+            
             <span >
               <label for="id_bio" class="NGO Volunteer">Bio:</label>
               <textarea name="bio" cols="40" rows="10"  class="form-control NGO Volunteer" id="id_bio"></textarea>
@@ -207,13 +207,16 @@
                 <label for="id_achievements"  class="NGO">Achievements:</label>
                 <input type="number" name="achievements" required=""  class="form-control NGO" id="id_achievements">
               </span>
+              <button type="submit" class="btn btn-primary">
+                Sign in
+              </button>
+               
           
-          </div>      
-          <button type="submit" class="btn btn-primary">
-            Sign in
-          </button>
+        </div> 
+      </div>
+        
         </body>
-
+    
 
 <script src="./127.0.0.1_files/bootstrap.bundle.min.js.download" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <script src="./127.0.0.1_files/signup.js.download"></script>
