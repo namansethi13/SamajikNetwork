@@ -21,9 +21,11 @@ class events(models.Model):
     noofvolunteers = models.IntegerField()
     id = models.ForeignKey(BaseUser,on_delete=models.CASCADE)
     
-class volunteer_event():
-    event_id =models.ForeignKey(events,on_delete=models.CASCADE)
-    id = models.ForeignKey(BaseUser,on_delete=models.CASCADE)
+class volunteer_event(models.Model):
+    v_id = models.ForeignKey(Volunteer,on_delete=models.CASCADE)
+    e_id =models.ForeignKey(events,on_delete=models.CASCADE)
+    
     hours=models.IntegerField()
+
 
     
