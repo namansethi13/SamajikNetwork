@@ -67,7 +67,7 @@ class VolunteerModel(BaseUser):
         return  self.username
 
     class Meta:
-        verbose_name_plural = 'NGOs'
+        verbose_name_plural = 'Volunteers'
 # class Volunteer(models.Model):
 #     user = models.OneToOneField(User, parent_link=True, on_delete=models.CASCADE, related_name='%(class)s_related')
 #     volunteer_profile_image = models.ImageField(upload_to="volunteer_profile_images/", null=True, blank=True)

@@ -11,7 +11,7 @@ class SignUpForm(forms.Form):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
     first_name = forms.CharField()
     last_name = forms.CharField()
-    # logo = forms.ImageField(required=False)
+    logo = forms.ImageField(required=False)
     address = forms.CharField()
     phone = forms.IntegerField()
     website = forms.URLField()
@@ -21,3 +21,13 @@ class SignUpForm(forms.Form):
     no_of_employees = forms.IntegerField()
     achievements = forms.IntegerField()
     role = forms.ChoiceField(choices= ShortRoleType.choices)
+
+    def save(self, *args, **kwargs):
+        instance = super(SignUpForm, self).save(commit=False)
+        if self.cleaned_data.get('logo', None):
+            logo = self.cleaned_data['logo']
+            fs = FileSystemStorage()
+            filename = fs.save(logo.name, logo)
+            instance.logo = filename
+        instance.save()
+        return instance

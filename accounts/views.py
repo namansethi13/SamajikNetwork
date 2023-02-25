@@ -1,4 +1,5 @@
 from django.views.generic import CreateView, TemplateView
+from django.core.files.storage import FileSystemStorage
 from django.utils.decorators import method_decorator
 from .models import NGOModel, VolunteerModel
 from .forms import SignUpForm
@@ -27,7 +28,6 @@ class SignUpView(CreateView):
         Check the role and accordingly validate the post data
         """
         try:
-            
             role = request.POST['role']
             pass1 =  request.POST['password1']
             pass2 =  request.POST['password2']
@@ -35,33 +35,56 @@ class SignUpView(CreateView):
                 print(f"password dont match {pass1}, {pass2}")
                 return redirect(reverse_lazy('signup'))
 
-            print(role)
             if role == ShortRoleType.NGO or role == ShortRoleType.VOLUNTEER:
-                form = SignUpForm(request.POST)
-                # check email entered is already is in database
-                # redirect_url = check_email(request, request.POST.get('email',None))
-                # if redirect_url != None:
-                #     return redirect(redirect_url)
+                print(request.FILES)
+                form = SignUpForm(request.POST, request.FILES)  # need to pass request.FILES as well to handle file uploads
                 if form.is_valid():
                     print("Form is valid")
                     email = form.cleaned_data.get('email')
                     username = form.cleaned_data.get('username')
                     password= form.cleaned_data.get('password1')
-                    
+                    logo = form.cleaned_data.get('logo')
+                    first_name = form.cleaned_data.get('first_name')
+                    last_name = form.cleaned_data.get('last_name')
+                    address = form.cleaned_data.get('address')
+                    phone = form.cleaned_data.get('phone')
+                    website = form.cleaned_data.get('website')
+                    socials = form.cleaned_data.get('socials')
+                    bio = form.cleaned_data.get('bio')
+                    causes = form.cleaned_data.get('causes')
+                    no_of_employees = form.cleaned_data.get('no_of_employees')
+                    achievements = form.cleaned_data.get('achievements')
+                    causes = form.cleaned_data.get('causes')
+
+
+                    print(f"hello here {logo}")
+                    if logo:
+                        logo_name = logo.name
+                    else:
+                        logo_name = None
+
                     if role == ShortRoleType.NGO:
                         user = NGOModel.objects.create(username=username, email=email, 
-                        password=password, role=ShortRoleType.NGO)
+                        password=password, role=ShortRoleType.NGO, profile_image=logo_name
+                        ,interests=causes,phone=phone,company_name=first_name,address=address,
+                        website=website,bio=bio)
                     else:
                         user = VolunteerModel.objects.create(username=username, email=email, 
-                        password=password, role=ShortRoleType.VOLUNTEER)
+                        password=password, role=ShortRoleType.VOLUNTEER, profile_image=logo_name)
                     
                     user.set_password(password)
                     user.save()
+
+                    # handle logo file upload
+                    if logo:
+                        with open(f"media/{logo_name}", "wb+") as f:
+                            for chunk in logo.chunks():
+                                f.write(chunk)
                 else:
                     print("Form data is invalid")
             else:
                 print("invalid role")
             return redirect(reverse_lazy('signup'))
-        except Exception as e :
-            print(f"some error occured {e}")
+        except Exception as e:
+            print(f"some error occurred {e}")
             return redirect(reverse_lazy('home'))

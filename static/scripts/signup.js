@@ -1,10 +1,13 @@
-const radioButtons = document.querySelectorAll('input[name="user"]');
+const radioButtons = document.querySelectorAll('#id_role');
 let form= document.querySelector('form')
 radioButtons.forEach(rdbtn => {
     rdbtn.addEventListener("click",()=>{
-        let value=String(rdbtn.attributes[3].value);
-        if(value=="volunteer")
+        let value=String(radioButtons[0].selectedOptions[0].value);
+
+        // print(value)
+        if(value=="VOLUNTEER")
         {
+            console.log("on")
             vform();
             return;
         }

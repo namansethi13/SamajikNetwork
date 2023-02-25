@@ -15,12 +15,8 @@ Including another URLconf
 """
 from django.urls import path
 from django.urls import path , include
-from .custom_views import (
-    CustomLoginView,)
-
-from .views import (SignUpView)
+from .views import create_event
 
 urlpatterns = [
-    path('login/', CustomLoginView.as_view(template_name = 'login.html',), name='login'),
-    path('signup/', SignUpView.as_view(), name="signup"),
+    path('create/', create_event, name='create_event'),
 ]

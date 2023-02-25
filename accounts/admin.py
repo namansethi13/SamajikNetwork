@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .models import BaseUser
-# from .models import NGO
-# from .models import Volunteer
+from .models import NGOModel
+from .models import VolunteerModel
 
 
 class UserAdminConfig(UserAdmin):
@@ -43,5 +43,5 @@ class UserAdminConfig(UserAdmin):
 
 admin.site.register(BaseUser, UserAdminConfig)
 
-# admin.site.register(NGO)
-# admin.site.register(Volunteer)
+admin.site.register(NGOModel)
+admin.site.register(VolunteerModel)
