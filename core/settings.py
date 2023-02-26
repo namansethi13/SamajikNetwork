@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-dvd!$b@+vgni68=4t(w(_)u^r)4sb%&e4yk@@*k53w4d07g!-2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh','127.0.0.1']
 
 
 # Application definition
@@ -80,11 +80,22 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'ilolnnzj',
+    'USER': 'ilolnnzj',
+    'PASSWORD': 'PW_Ns1dYojVDU-XBeFmLXEzZixzBPe_h',
+    # ↓ HOST instead of HOSTS
+    'HOST': 'mel.db.elephantsql.com',
+    'PORT': 5432
+  }
 }
 
 
@@ -129,6 +140,9 @@ STATICFILES_DIRS=[
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR ,'staticfiles_build','static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
