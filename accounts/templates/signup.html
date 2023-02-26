@@ -1,12 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% load addcss %}
+{% block imports %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/signup.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'styles/util.css' %}"> {% endcomment %}
+{% endblock imports %}
+
+
+{% block body %}
+
+    {% comment %} {{signup_form.as_p}} {% endcomment %}
+
+    <h1 style="color:white">Samajik Network</h1>
+        
+    <form method="post">
+    <div class="wrapper">
+      <!-- <label for="id_role">Role:</label> -->
+        {% csrf_token %}
+        <div class="formwrapper"> 
+          <fieldset class="r-pill">
+            <legend>Sign up as</legend>
     
-</body>
-</html>
+            <div class="r-pill__group">
+              <span class="r-pill__item">
+                <input type="radio" id="NGO" name="radios" checked>
+                <label for="r1">NGO</label>
+              </span>
+    
+              <span class="r-pill__item">
+                <input type="radio" id="VOLUNTEER" name="radios">
+                <label for="r2">VOLUNTEER</label>
+              </span>
+    
+            </div>
+          </fieldset>
+          {{signup_form.role|addcss:"hidden"}}
+{% comment %} 
+            <select name="role" class="hidden" id="id_role">
+                <option value="NGO" >Ngo</option>
+                <option value="VOLUNTEER" >Volunteer</option>
+            </select>     {% endcomment %}
+            <span class="form-group">
+              <label for="id_username" class="NGO Volunteer">Username:</label>
+              {% comment %} <input type="text" name="username" class="form-control NGO Volunteer" required="" id="id_username"> {% endcomment %}
+              {{signup_form.username|addcss:"form-control NGO Volunteer"}}
+
+            </span>
+
+            
+            <span  class="form-group">
+              <label for="id_email" class="NGO Volunteer">Email:</label>
+              {% comment %} <input type="email" name="email"  class="form-control NGO Volunteer" required="" id="id_email"> {% endcomment %}
+              {{signup_form.email|addcss:"form-control NGO Volunteer"}}
+
+              
+            </span >
+
+            
+            <span  class="form-group">
+              <label for="id_password1" class="NGO Volunteer">Password1:</label>
+              {% comment %} <input type="password" name="password1"  class="form-control NGO Volunteer" placeholder="Password" required="" id="id_password1"> {% endcomment %}
+              {{signup_form.password1|addcss:"form-control NGO Volunteer"}}
+
+              
+            </span>
+
+            
+            <span  class="form-group">
+              <label for="id_password2" class="NGO Volunteer">Password2:</label>
+              {% comment %} <input type="password" name="password2"  class="form-control NGO Volunteer" placeholder="Confirm Password" required="" id="id_password2"> {% endcomment %}
+              {{signup_form.password2|addcss:"form-control NGO Volunteer"}}
+
+              
+            </span>
+
+            
+            <span  class="form-group">
+              <label for="id_first_name" class="NGO Volunteer">First name:</label>
+              {% comment %} <input type="text" name="first_name"  class="form-control NGO Volunteer" required="" id="id_first_name"> {% endcomment %}
+              {{signup_form.first_name|addcss:"form-control NGO Volunteer"}}
+              
+            </span>
+
+            
+            <span  class="form-group">
+              <label for="id_last_name" class="Volunteer">Last name:</label>
+              {% comment %} <input type="text" name="last_name" required=""  class="form-control Volunteer" id="id_last_name"> {% endcomment %}
+              {{signup_form.last_name|addcss:"form-control Volunteer"}}
+
+              
+            </span>
+
+            
+            <span  class="form-group">
+              <label for="id_logo" class="NGO Volunteer">Logo:</label>
+              {% comment %} <input type="file" name="logo" class="NGO Volunteer" accept="image/*" id="id_logo"> {% endcomment %}
+              {{signup_form.logo|addcss:"NGO Volunteer"}}
+
+              
+            </span>
+
+            
+            <span  class="form-group">
+              <label for="id_address" class="NGO">Address:</label>
+              {% comment %} <input type="text" name="address"  class="form-control NGO" required="" id="id_address"> {% endcomment %}
+              {{signup_form.address|addcss:"form-control NGO"}}
+
+              
+            </span>
+            <span  class="form-group">
+              <label for="id_phone" class="NGO Volunteer">Phone:</label>
+              {% comment %} <input type="number" name="phone"  class="form-control NGO Volunteer" required="" id="id_phone"> {% endcomment %}
+              {{signup_form.phone|addcss:"form-control NGO Volunteer"}}
+
+              
+            </span>
+
+            
+            <span  class="form-group">
+              <label for="id_website" class="NGO">Website:</label>
+              {% comment %} <input type="url" name="website" required=""  class="form-control NGO" id="id_website"> {% endcomment %}
+              {{signup_form.website|addcss:"form-control NGO"}}
+
+              
+            </span>
+
+          
+
+            <br>
+          </div>
+          <div class="second">
+            
+            <span >
+              <label for="id_bio" class="NGO Volunteer">Bio:</label>
+              {% comment %} <textarea name="bio" cols="40" rows="10"  class="form-control NGO Volunteer" id="id_bio"></textarea> {% endcomment %}
+              {{signup_form.bio|addcss:"form-control NGO Volunteer"}}
+
+              
+            </span>
+
+            
+            <span  class="form-group">
+              <label>Causes:</label>
+              </span>
+              
+              <span class="causes">
+              {{signup_form.causes|addcss:"NGO Volunteer"}}
+
+              
+        </span>
+
+            
+            <span>
+              <label for="id_no_of_employees" class="NGO">No of employees:</label>
+              <input type="number" name="no_of_employees" required=""  class="form-control NGO" id="id_no_of_employees" value=0>
+            </span>
+              {% comment %} <span>
+                <label for="id_achievements"  class="NGO">Achievements:</label>
+                <input type="number" name="achievements" required=""  class="form-control NGO" id="id_achievements">
+              </span> {% endcomment %}
+              <button type="submit" class="btn btn-primary">
+                Sign in
+              </button>
+               
+          
+        </div> 
+
+    </div>
+</form>
+          {% comment %} <script src="./127.0.0.1_files/bootstrap.bundle.min.js.download" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="./127.0.0.1_files/signup.js.download"></script> {% endcomment %}
+        <script src="{% static 'scripts/signup.js'%} "></script>
+
+{% endblock body %}

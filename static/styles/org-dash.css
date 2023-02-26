@@ -22,7 +22,11 @@ img {
 .col-lg-7{
     background-color: white;
     border-radius: 20px;
+<<<<<<< HEAD
     padding:;
+=======
+    /* padding:; */
+>>>>>>> 8c4a4dd881a84bef01af66b8d969c69c51461fe7
 }
 .about-text h3 {
   font-size: 45px;
@@ -270,8 +274,13 @@ mark {
     overflow: hidden;
 }
 .timeline-content img{
+<<<<<<< HEAD
     height: 50%;
     width: 30%;
+=======
+    /* height: 50%;
+    width: 30%; */
+>>>>>>> 8c4a4dd881a84bef01af66b8d969c69c51461fe7
     border-radius: 20px;
 }
 .timeline-content p{
@@ -351,4 +360,7 @@ mark {
     overflow: hidden;
     border-radius: 30px
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8c4a4dd881a84bef01af66b8d969c69c51461fe7

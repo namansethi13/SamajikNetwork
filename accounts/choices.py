@@ -1,3 +1,5 @@
+from django.db import models
+
 INTEREST_CHOICES = (
     ('animals', 'Animals'),
     ('arts_culture', 'Arts and Culture'),
@@ -29,3 +31,13 @@ CAUSE_CHOICES = (
     ('women', 'Women'),
     ('other', 'Other'),
 )
+
+
+class RoleType(models.TextChoices):
+    NGO = "NGO", "Ngo"
+    VOLUNTEER = "VOLUNTEER", "Volunteer"
+    OTHER = "OTHER", "Other"
+
+class ShortRoleType(models.TextChoices):
+    NGO = "NGO", "Ngo"
+    VOLUNTEER = "VOLUNTEER", "Volunteer"

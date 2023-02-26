@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .models import BaseUser
-from .models import NGO
-from .models import Volunteer
+from .models import NGOModel
+from .models import VolunteerModel
 
 
 class UserAdminConfig(UserAdmin):
@@ -14,13 +14,12 @@ class UserAdminConfig(UserAdmin):
 
     ordering = ("-create_date",)
 
-    list_display = ("email","is_active", "is_staff")
+    list_display = ("email","role" ,"is_active", "is_staff")
 
     readonly_fields = ("create_date",)
 
     fieldsets = (
-        (None, {"fields" : ["email"]}),
-        ("Verifications", {"fields" : ("is_email_verified",)}),
+        (None, {"fields" : ("email", "role")}),
         ("Permisssions", {"fields" : ("is_active","is_staff", "is_superuser", "groups",)}),   
     )
 
@@ -33,6 +32,7 @@ class UserAdminConfig(UserAdmin):
                     "email", 
                     "password1",
                     "password2", 
+                    "role",
                     "is_active",
                     "is_staff",
                 ),
@@ -40,7 +40,8 @@ class UserAdminConfig(UserAdmin):
         ),
     )
 
+
 admin.site.register(BaseUser, UserAdminConfig)
 
-admin.site.register(NGO)
-admin.site.register(Volunteer)
+admin.site.register(NGOModel)
+admin.site.register(VolunteerModel)
