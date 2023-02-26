@@ -18,11 +18,13 @@ from django.urls import path , include
 from .custom_views import (
     CustomLoginView,)
 
-from .views import (SignUpView,dashboard,profile)
+from .views import (SignUpView,dashboard,profile,logout_view)
 
 urlpatterns = [
     path('login/', CustomLoginView.as_view(template_name = 'login.html',), name='login'),
     path('signup/', SignUpView.as_view(), name="signup"),
-     path('dashboard/',dashboard, name='dashboard'),
-     path('profile/',profile, name='dashboard'),
+    path('dashboard/',dashboard, name='dashboard'),
+    path('profile/',profile, name='dashboard'),
+    path('logout/', logout_view, name='logout'),
+
 ]

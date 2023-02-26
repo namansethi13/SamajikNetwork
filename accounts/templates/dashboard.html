@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles/org-dash.css' %}">
     <link rel="stylesheet" href="https://kit.fontawesome.com/8dd9a267cb.css" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <style>
     .flip-card {
@@ -119,38 +121,31 @@
             
             <div class="row">
                 {% if user.role == "NGO" %}
-                <div class="col-6 col-lg-3">
+                <div class="col-6 col-lg-3" id="creev">
                     <div class="count-data text-center">
                 <a href="{%url 'create_event' %}"><button class="btn btn-primary f-s-12 rounded-corner" type="button">Create Event</button></a>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2">500</h6>
-                        <p class="m-0px font-w-600">Number of volunteers</p>
-                    </div>
-                </div>
-                
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2">150</h6>
-                        <p class="m-0px font-w-600">Completed Events</p>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3">
-                    <div class="count-data text-center">
-                        <h6 class="count h2">850</h6>
-                        <p class="m-0px font-w-600">Total Hours</p>
-                    </div>
-                </div>
                
-                <div class="col-6 col-lg-3">
+                <div class="col-6 col-lg-6">
                     <div class="count-data text-center">
-                        <h6 class="count h2">3</h6>
+                        <h6 class="count h2">{{no_of_events}}</h6>
                         <p class="m-0px font-w-600">Ongoing events</p>
                     </div>
                 </div>
                 {%else%}
+                <div class="col-6 col-lg-3" id="creev">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">{{no_of_events}}</h6>
+                        <p class="m-0px font-w-600">Joined Events</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-6">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">{{no_of_hours}}</h6>
+                        <p class="m-0px font-w-600">Completed Hours</p>
+                    </div>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -158,8 +153,11 @@
 </section>
 <timeline>
     <!-- begin timeline -->
+    <div class="timewrap">
+
     <ul class="timeline">
-        <h1>Event Timeline</h1>
+        <h1>{% if user.role == "NGO" %} Event timeline: {%else%}Joined Events:{% endif %}</h1>
+        {% if user.role == "NGO" %}
         {% for event in events_list %}
         <li>
             <!-- begin timeline-time -->
@@ -176,18 +174,94 @@
         <!-- begin timeline-body -->
         <div class="timeline-body">
             <div class="timeline-header">
-                <span class="userimage"><img src="https://api.dicebear.com/5.x/icons/png?seed=event" alt=""></span>
+                <span class="userimage"><img src="https://api.dicebear.com/5.x/open-peeps/png?seed={{event.ngo_id}}" alt=""></span>
                 <span class="username">{{event.e_name}}</span>
-                <span class="pull-right text-muted">({% if event.type %} online {%else%}offline{% endif %})
-                    ({% if event.nature %} permanent {%else%}temperary{% endif %})
-                </span>
+                
             </div>
             <div class="timeline-content">
                 <div class="flip-card">
                     <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <button class="btn btn-primary f-s-12 rounded-corner" type="button">View Details </button>
-                            <img src="https://api.dicebear.com/5.x/icons/png?seed=event1" width="300px" height="200px">
+                        <div class="flip-card-front" style="background-color:white;">
+                            <button class="btn btn-primary f-s-12 rounded-corner" type="button" style="margin-top:25%;">View Details </button>
+                            {% comment %} <img src="https://api.dicebear.com/5.x/icons/png?seed=event1" width="300px" height="200px"> {% endcomment %}
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Type : {% if event.type %} online {%else%}offline{% endif %}</p>
+              <p>NGO id : {{event.ngo_id}}</p>
+            </div>
+            
+        </div>
+        </div>
+            <div class = "info">
+                <div class="eventyp">
+                    <h6 class="pull-right">Event Type : {% if event.type %} online {%else%}offline{% endif %}<br>
+                        Recuitment Type: {% if event.nature %} permanent {%else%}temperary{% endif %}
+                    </h6>
+                </div>
+                <div class = "desc">
+                    <a href="{% url 'delete' event.e_id %}"><button class="btn btn-danger">delete event</button></a>
+                </div>
+                
+                
+            </div>
+            
+            </div>
+            <h3> Joined users:</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in volunteers_of_events %}
+                    {% if i == event.e_name %}
+                    {% for  key , value in volunteers_of_events.items  %}
+                    {% if key == i %}
+                    {% for v in value  %}
+                    <tr>    
+                        <td>{{v.first_name}}</td>
+                        <td>{{v.last_name}}</td>
+                        <td>{{v.phone}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+    <!-- end timeline-body -->
+    {% endfor %}
+    {% else %}
+    {% for event in event_of_volunteer %}
+        <li>
+            <!-- begin timeline-time -->
+            <div class="timeline-time">
+          <span class="date">{{event.start_date}}</span>
+          <span class="time">{{event.end_date}}</span>
+        </div>
+        <!-- end timeline-time -->
+        <!-- begin timeline-icon -->
+        <div class="timeline-icon">
+            <a href="javascript:;">&nbsp;</a>
+        </div>
+        <!-- end timeline-icon -->
+        <!-- begin timeline-body -->
+        <div class="timeline-body">
+            <div class="timeline-header">
+                <span class="userimage"><img src="https://api.dicebear.com/5.x/open-peeps/png?seed={{event.ngo_id}}" alt=""></span>
+                <span class="username">{{event.e_name}}</span>
+            </div>
+            <div class="timeline-content">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front" style="background-color:white;">
+                            <button class="btn btn-primary f-s-12 rounded-corner" type="button" style="margin-top:25%;">View Details </button>
+                            {% comment %} <img src="https://api.dicebear.com/5.x/icons/png?seed=event1" width="300px" height="200px"> {% endcomment %}
                         </div>
                         <div class="flip-card-back">
                             <p>Type : {% if event.type %} online {%else%}offline{% endif %}</p>
@@ -195,24 +269,26 @@
             </div>
         </div>
         </div>
-                <p>
-                    {{event.e_desc}}
-                </p>
+        <div class= "info">
+            <div class="eventyp">
+                <h6 class="pull-right">Event Type : {% if event.type %} online {%else%}offline{% endif %}<br>
+                    Recuitment Type: {% if event.nature %} permanent {%else%}temperary{% endif %}
+                </h6>
             </div>
-            <div class="timeline-comment-box">
-                <div class="input">
-                    <form action="">
-                        <div class="input-group">
-                           
-                        </span>
-                    </div>
-                </form>
+            <div class = "desc">
+                
             </div>
+            </div>
+            </div>
+            
+               
         </div>
-    </div>
     <!-- end timeline-body -->
     {% endfor %}
+    {% endif %}
 </li>
+
+</div>
 
 
 </timeline>

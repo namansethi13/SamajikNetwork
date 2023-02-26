@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.urls import path
 from django.urls import path , include
-from .views import create_event
+from .views import create_event,view_events,join_event,delete
 
 urlpatterns = [
     path('create/', create_event, name='create_event'),
+     path('view/', view_events, name='view_events'),
+    path(r'joinevent/<int:e_id>/',join_event , name='join_event'),
+    path(r'delete/<int:e_id>/',delete , name='delete'),
+
 ]

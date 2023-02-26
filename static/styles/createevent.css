@@ -6,9 +6,8 @@
 
 
 body{
- display: flex;
- justify-content: center;   
- align-items: center;
+    background-color: royalblue;
+    position: relative;
 }
 .wrapper{
     margin: 1em;

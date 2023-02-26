@@ -5,7 +5,6 @@ from .models import BaseUser
 from .models import NGOModel
 from .models import VolunteerModel
 
-
 class UserAdminConfig(UserAdmin):
     model = BaseUser
 

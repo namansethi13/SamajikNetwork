@@ -1,13 +1,18 @@
+
 *{
 padding: 0;
 margin: 0;
 box-sizing: border-box;
 }
+body{
+    background-color: royalblue;
+}
 .section {
-    background: url(/static/styles/images/low-poly-grid-haikei.png);
+    background-color: royalblue;
     padding: 30px 50px;
     position: relative;
 }
+
 
 img {
     max-width: 100%;
@@ -16,8 +21,9 @@ img {
     vertical-align: middle;
     border-style: none;
 }
-/* About Me 
+/* About Me
 ---------------------*/
+
 
 .col-lg-7{
     background-color: white;
@@ -52,6 +58,8 @@ img {
 }
 
 
+
+
 .about-list {
   padding-top: 10px;
 }
@@ -66,6 +74,7 @@ img {
   position: relative;
 }
 
+
 .about-list p {
   margin-left: 20px;
   font-size: 15px;
@@ -74,10 +83,13 @@ img {
     display: flex;
     justify-content: center;
 
+
 }
 .col-lg-5 img{
     background-color: white;
     padding: 50px 50px;
+    width: 300px;
+    height: 300px;
     border-radius: 20px;
 }
 @media (max-width: 991px) {
@@ -86,12 +98,13 @@ img {
   }
 }
 
+
 .about-section .counter {
+    width: 100%;
     margin-top: 30px;
-  padding: 20px 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+    padding: 10px 10px;
+    background: white;
+    border-radius: 10px;
 }
 .about-section .counter .count-data {
   margin-top: 10px;
@@ -106,15 +119,13 @@ img {
   font-weight: 600;
   margin: 0;
 }
-mark {
-    background-image: linear-gradient(rgba(252, 83, 86, 0.6), rgba(252, 83, 86, 0.6));
-    background-size: 100% 3px;
-    background-repeat: no-repeat;
-    background-position: 0 bottom;
-    background-color: transparent;
-    padding: 0;
-    color: currentColor;
+#creev{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+
 .theme-color {
     color: #fc5356;
 }
@@ -124,18 +135,30 @@ mark {
 
 
 
+
+
+
 /* timeline starts here */
+.timewrap{
+    background-color: royalblue;
+    display: flex;
+    justify-content: center;
+}
 .timeline {
-    background-color: #ffffff;
+    width: 80%;
+    background-color: white;
     list-style-type: none;
     margin: 0;
     padding: 0;
-    position: relative
+    position: relative;
+    border-radius: 30px;
 }
 .timeline h1{
     padding: 20px 0px;
+    padding-top: 30px;
     text-align: center;
 }
+
 
 .timeline::before {
     content: '';
@@ -148,12 +171,14 @@ mark {
     margin-left: -2.5px
 }
 
+
 .timeline>li {
-    
+   
     position: relative;
     min-height: 50px;
     padding: 20px 0
 }
+
 
 .timeline .timeline-time {
     position: absolute;
@@ -163,22 +188,26 @@ mark {
     top: 30px
 }
 
+
 .timeline .timeline-time .date,
 .timeline .timeline-time .time {
     display: block;
     font-weight: 600
 }
 
+
 .timeline .timeline-time .date {
     line-height: 16px;
     font-size: 12px
 }
+
 
 .timeline .timeline-time .time {
     line-height: 24px;
     font-size: 20px;
     color: #242a30
 }
+
 
 .timeline .timeline-icon {
     left: 15%;
@@ -187,6 +216,7 @@ mark {
     text-align: center;
     top: 40px
 }
+
 
 .timeline .timeline-icon a {
     text-decoration: none;
@@ -202,14 +232,17 @@ mark {
     transition: border-color .2s linear
 }
 
+
 .timeline .timeline-body {
-    background:#84c3db;
+    background:lightblue;
     margin-left: 23%;
     margin-right: 17%;
     position: relative;
     padding: 20px 25px;
-    border-radius: 6px
+    border-radius: 6px;
+    height: min-content;
 }
+
 
 .timeline .timeline-body:before {
     content: '';
@@ -221,9 +254,11 @@ mark {
     top: 20px
 }
 
+
 .timeline .timeline-body>div+div {
     margin-top: 15px
 }
+
 
 .timeline .timeline-body>div+div:last-child {
     margin-bottom: -20px;
@@ -231,11 +266,13 @@ mark {
     border-radius: 0 0 6px 6px
 }
 
+
 .timeline-header {
     padding-bottom: 10px;
     border-bottom: 1px solid #e2e7eb;
     line-height: 30px
 }
+
 
 .timeline-header .userimage {
     float: left;
@@ -246,20 +283,27 @@ mark {
     margin: -2px 10px -2px 0
 }
 
+
 .timeline-header .username {
+    font-family: 'poppins';
+    text-transform: uppercase;
     font-size: 2rem;
     font-weight: 600
 }
+
 
 .timeline-header .username,
 .timeline-header .username a {
     color: #2d353c
 }
 
+
 .timeline img {
     max-width: 100%;
+    height: 100%;
     display: block
 }
+
 
 .timeline-content {
     letter-spacing: .25px;
@@ -279,6 +323,7 @@ mark {
     line-height: 1.2;
 }
 
+
 .timeline-content:after,
 .timeline-content:before {
     content: '';
@@ -286,68 +331,7 @@ mark {
     clear: both
 }
 
+
 .timeline-title {
     margin-top: 0
-}
-
-.timeline-footer {
-    background: #fff;
-    border-top: 1px solid #e2e7ec;
-    padding-top: 15px
-}
-
-.timeline-footer a:not(.btn) {
-    color: #575d63
-}
-
-.timeline-footer a:not(.btn):focus,
-.timeline-footer a:not(.btn):hover {
-    color: #2d353c
-}
-
-.timeline-likes {
-    color:black;
-    font-weight: 600;
-    font-size: 12px
-}
-
-.timeline-likes .stats-right {
-    float: right
-}
-
-.timeline-likes .stats-total {
-    display: inline-block;
-    line-height: 20px
-}
-
-.timeline-likes .stats-icon {
-    float: left;
-    margin-right: 5px;
-    font-size: 9px
-}
-
-.timeline-likes .stats-icon+.stats-icon {
-    margin-left: -2px
-}
-
-.timeline-likes .stats-text {
-    line-height: 20px
-}
-
-.timeline-likes .stats-text+.stats-text {
-    margin-left: 15px
-}
-
-.timeline-comment-box {
-    background:#84c3db;
-    margin-left: -25px;
-    margin-right: -25px;
-    padding: 20px 25px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.timeline-comment-box button {
-    overflow: hidden;
-    border-radius: 30px
 }

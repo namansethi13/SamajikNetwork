@@ -6,8 +6,9 @@ h1{
 }
 
 body{
-	display: flex;
-	justify-content: center;
+	position: relative;
+	background-color: royalblue;
+	overflow-x: hidden;
 }
 .wrapper{
     padding: 50px;
@@ -16,9 +17,10 @@ body{
     border-radius: 20px ;
 	display: flex;
 	margin-top: 5%;
-	gap:2rem
-    
-    
+	gap:2rem;
+	position: absolute;
+	top: 20%;
+	left: 30%
 }
 
 .formwrapper{

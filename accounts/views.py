@@ -3,7 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.utils.decorators import method_decorator
 from .models import NGOModel, VolunteerModel
 from events.models import volunteer_event , events
-
+from django.contrib.auth import logout
 from .forms import SignUpForm
 from .custom_decorators import logout_required
 import logging
@@ -12,6 +12,25 @@ from django.urls import reverse_lazy
 from .choices import RoleType, ShortRoleType
 from django.contrib.auth import get_user_model
 User = get_user_model()
+all_user_events = {}
+volunteers_of_events = {}
+def ok(request):
+    volunteers = VolunteerModel.objects.all()
+    volunteer_events = volunteer_event.objects.all()
+    # print(volunteer_events)
+            # volunteer_events_A = volunteer_event.objects.filter(v_id=volunteer)
+    for volunteer in volunteers:
+        for v in volunteer_events:
+            # print("in")
+            if v.v_id == volunteer:
+               all_user_events[volunteer] = []
+
+    for volunteer in volunteers:
+        for v in volunteer_events:
+            # print("in")
+            if v.v_id == volunteer:
+               all_user_events[volunteer] += [v.e_id.e_id]
+            # print(event_of_volunteer)
 
 class SignUpView(CreateView):
     @method_decorator(logout_required)
@@ -100,14 +119,93 @@ class SignUpView(CreateView):
 
 def dashboard(request):
     if(request.user.is_authenticated):
+        event_of_volunteer = []
         events_of_ngo = events.objects.filter(ngo_id=request.user.id)
-        print(events_of_ngo)
+        currentEvents = 0
+        no_of_hours = 0
+        volunteer_events = volunteer_event.objects.all()
 
+        if request.user.role != "VOLUNTEER":
+            ok(request)
+
+            ngo = NGOModel.objects.get(id=request.user.id) 
+            AllEvents = events.objects.all()
+            for e in AllEvents:
+                if e.ngo_id == ngo:
+                    currentEvents +=1
+            print(events_of_ngo)
+            for e in events_of_ngo:
+                for i in all_user_events:
+                    for j in all_user_events[i]:
+                        if e.e_id == j:
+                            volunteers_of_events[e.e_name] = []
+            for e in events_of_ngo:
+                print("in")
+                for i in all_user_events:
+                    print(i)
+                    for j in all_user_events[i]:
+                        print(j)
+                        if e.e_id == j:
+                            volunteers_of_events[e.e_name] += [i]
+
+            
+
+        else:       
+            volunteer = VolunteerModel.objects.get(id=request.user.id)
+            # volunteer_events_A = volunteer_event.objects.filter(v_id=volunteer)
+
+            for v in volunteer_events:
+                if v.v_id == volunteer:
+                    event_of_volunteer.append(v.e_id)
+                    no_of_hours +=  v.hours 
+                    currentEvents +=1
+           
+
+
+        
+        # for event in events_of_ngo:
+        #     num_volunteers = event.volunteer_event_set.filter(v_id__ngo_id=ngo).count()
+        #     print(f"Event Name: {event.e_name}, Num Volunteers: {num_volunteers}")
+        # volunteer_event_list = {}
+        # for v in volunteer_events:
+        #     volunteer_event_list[v.e_id.e_id] = []
+
+        # for v in volunteer_events:
+        #     volunteer_event_list[v.e_id.e_id] += [str(v.v_id.id)]
+        # print(volunteer_event_list)
+        # print(events_of_ngo)
+        # no_of_volunteers = 0
+        # checked_volunteers = []
+        # for e in events_of_ngo:
+        #     if e.e_id in volunteer_event_list.keys():
+        #         # and e.e_id not in checked_volunteers
+        #         for vol in volunteer_event_list[e.e_id]:
+        #             print(e.e_id)
+        #             print(volunteer_event_list[1])
+        #             print(vol)
+        #             # for v in vol:
+        #             #     if v not in checked_volunteers:
+        #             #         no_of_volunteers += 1
+        #             #         hecked_volunteers.append([vol])
+        # print(no_of_volunteers)
         # print(request.user.ngomodel.event_set.all())
-        return render(request,'dashboard.html',context={"events_list": events_of_ngo})
+
+        print(volunteers_of_events)
+        return render(request,'dashboard.html',context={"events_list": events_of_ngo,
+                                                        "no_of_events": currentEvents,
+                                                        "no_of_hours":no_of_hours,
+                                                        'event_of_volunteer': event_of_volunteer,
+                                                        'volunteers_of_events': volunteers_of_events})
     else:
         return redirect(reverse_lazy('login'))
 
 
 def profile(request):
        return dashboard(request)
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+
+
