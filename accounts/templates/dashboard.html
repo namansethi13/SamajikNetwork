@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block title %}
+<title>Samajik Network</title>
+{% endblock title %}
+
+{% block imports %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/org-dash.css' %}">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/8dd9a267cb.css" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+    .flip-card {
+     background-color: transparent;
+    width: 300px;
+    height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+    </style>
+{% endblock imports %}
+
+{% block body %}
+
+<section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-7">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">{{user.username}}</h3>
+                    <h6 class="theme-color lead">{{user.ngomodel.company_name}}</h6>
+                    <p>{{user.ngomodel.bio}}</p>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Joined date: </label>
+                                <p>{{user.create_date}}</p>
+                            </div>
+                            <div class="media">
+                                <label>{% if user.role == "NGO" %} Type: {%else%}Interests:{% endif %}</label>
+                                <p>{{user.interests}}</p>
+                            </div>
+                            {% if user.role == "NGO" %}
+                            <div class="media">
+                                <label>Address : </label>
+                                <p>{{user.ngomodel.address}}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>E-mail</label>
+                                <p>{{user.email}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Phone : </label>
+                                <p>{{user.phone}}</p>
+                            </div>
+                            {% if user.role == "NGO" %}
+                            <div class="media">
+                                <label>Website : </label>
+                                <p>{{user.ngomodel.website}}</p>
+
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="about-avatar">
+                    
+
+                    <img src="https://api.dicebear.com/5.x/open-peeps/png?size=512&seed={{user.username}}" title="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="counter">
+            
+            <div class="row">
+                {% if user.role == "NGO" %}
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                <a href="{%url 'create_event' %}"><button class="btn btn-primary f-s-12 rounded-corner" type="button">Create Event</button></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">500</h6>
+                        <p class="m-0px font-w-600">Number of volunteers</p>
+                    </div>
+                </div>
+                
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">150</h6>
+                        <p class="m-0px font-w-600">Completed Events</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">850</h6>
+                        <p class="m-0px font-w-600">Total Hours</p>
+                    </div>
+                </div>
+               
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2">3</h6>
+                        <p class="m-0px font-w-600">Ongoing events</p>
+                    </div>
+                </div>
+                {%else%}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<timeline>
+    <!-- begin timeline -->
+    <ul class="timeline">
+        <h1>Event Timeline</h1>
+        {% for event in events_list %}
+        <li>
+            <!-- begin timeline-time -->
+            <div class="timeline-time">
+          <span class="date">{{event.start_date}}</span>
+          <span class="time">{{event.end_date}}</span>
+        </div>
+        <!-- end timeline-time -->
+        <!-- begin timeline-icon -->
+        <div class="timeline-icon">
+            <a href="javascript:;">&nbsp;</a>
+        </div>
+        <!-- end timeline-icon -->
+        <!-- begin timeline-body -->
+        <div class="timeline-body">
+            <div class="timeline-header">
+                <span class="userimage"><img src="https://api.dicebear.com/5.x/icons/png?seed=event" alt=""></span>
+                <span class="username">{{event.e_name}}</span>
+                <span class="pull-right text-muted">({% if event.type %} online {%else%}offline{% endif %})
+                    ({% if event.nature %} permanent {%else%}temperary{% endif %})
+                </span>
+            </div>
+            <div class="timeline-content">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <button class="btn btn-primary f-s-12 rounded-corner" type="button">View Details </button>
+                            <img src="https://api.dicebear.com/5.x/icons/png?seed=event1" width="300px" height="200px">
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Type : {% if event.type %} online {%else%}offline{% endif %}</p>
+              <p>NGO id : {{event.ngo_id}}</p>
+            </div>
+        </div>
+        </div>
+                <p>
+                    {{event.e_desc}}
+                </p>
+            </div>
+            <div class="timeline-comment-box">
+                <div class="input">
+                    <form action="">
+                        <div class="input-group">
+                           
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end timeline-body -->
+    {% endfor %}
+</li>
+
+
+</timeline>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+{% endblock body %}

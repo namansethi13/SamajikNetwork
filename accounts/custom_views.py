@@ -13,5 +13,6 @@ from django.contrib.auth.views import (
 
 class CustomLoginView(SuccessMessageMixin, LoginView):
     success_message = "You were successfully logged in."
-    # redirect_authenticated_user = True
-    # redirect_field_name = reverse_lazy('home')
+    print(success_message)
+    redirect_field_name = reverse_lazy('dashboard')
+    redirect_authenticated_user = True

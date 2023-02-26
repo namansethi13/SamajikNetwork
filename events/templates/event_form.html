@@ -1,5 +1,101 @@
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Create">
-  </form>
+{% extends 'base.html' %}
+{% load addcss %}
+{% load static %}
+{% block title %}
+<title>Event Creation</title>
+{% endblock title %}
+{% block imports %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="{% static 'styles/createevent.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+{% endblock imports %}
+
+{% block body %}
+<div class="wrapper">
+  <form method="POST" enctype="multipart/form-data">
+    <h1>Create an Event</h1>
+    <p  class="form-group">
+{% csrf_token %}
+    <label for="id_e_name">Event name:</label>
+    {{form.e_name|addcss:"form-control"}}
+  </p>
+  
+  
+  <p>
+    <label for="id_e_desc">Event desc:</label>
+    {{form.e_desc|addcss:"form-control"}}
+    
+    
+  </p>
+  
+  
+  <p>
+    <label for="id_type">Type:</label>
+    {{form.type|addcss:"form-control"}}
+
+    
+    
+  </p>
+  
+  
+  <p>
+    <label for="id_start_date">Startdate (yyyy-mm-dd):</label>
+    {{form.start_date|addcss:"form-control"}}
+    
+    
+  </p>
+  
+  
+  <p>
+    <label for="id_end_date">Enddate (yyyy-mm-dd):</label>
+    {{form.end_date|addcss:"form-control"}}
+    
+    
+  </p>
+  
+  
+  <p>
+    <label for="id_nature">Nature of Recuitment:</label>
+    {{form.nature|addcss:"form-control "}}
+
+    
+    
+  </p>
+  
+  
+  <p>
+    <label for="id_noofvolunteers">No of volunteers required:</label>
+    {{form.noofvolunteers|addcss:"form-control "}}
+    
+    
+  </p>
+  
+  
+  <p style="visibility:hidden;">
+    <label for="id_ngo_id">Ngo id:</label>
+       {{form.ngo_id|addcss:"form-control "}}
+  </p>
+<br>
+<input type="submit"  class="btn btn-primary" value="Create">
+</form>
+</div>
+<script>
+  // Get the user ID from the server-side context
+var userId = "{{ user.id }}";
+
+// Find the select element in the DOM
+var selectElement = document.getElementById("id_ngo_id");
+
+// Loop through the options and set the selected attribute
+for (var i = 0; i < selectElement.options.length; i++) {
+  var option = selectElement.options[i];
+  if (option.value == userId) {
+    option.selected = true;
+    break;
+  }
+}
+</script>
+{% endblock body %}

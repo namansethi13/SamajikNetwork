@@ -5,3 +5,4 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = events
         fields = '__all__'
+        

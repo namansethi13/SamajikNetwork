@@ -1,372 +1,161 @@
-* {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
+h1{
+    position: absolute;
+    top: 1.5rem;
+    right: 1em;
+    font-family:'Poppins';
 }
 
-body, html {
-	height: 100%;
-	font-family: 'poppins', sans-serif;
-}
 body{
-  background-image: url(/static/styles/images/low-poly-grid-haikei.png);
-  display: flex;
-  justify-content: center;
-}/*---------------------------------------------*/
-a {
-	font-family: 'Poppins';
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
+	display: flex;
+	justify-content: center;
+}
+.wrapper{
+    padding: 50px;
+    width: 800px;
+    background: white;
+    border-radius: 20px ;
+	display: flex;
+	margin-top: 5%;
+	gap:2rem
+    
+    
 }
 
-a:focus {
-	outline: none !important;
+.formwrapper{
+	width: 450px;
+}
+.second{
+	margin-top: 100px;;
 }
 
-a:hover {
-	text-decoration: none;
-  color: #2185d6;
+.form-control{
+   margin-bottom: 15px;
+}
+span{
+    font-size: 1rem;
+    font-family: 'poppins';
 }
 
-/*---------------------------------------------*/
-h1,h2,h3,h4,h5,h6 {
-	margin: 0px;
-}
-
-p {
-	font-family: 'Poppins';
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-}
-
-ul, li {
-	margin: 0px;
-	list-style-type: none;
-}
-
-
-/*---------------------------------------------*/
-input {
-	outline: none;
-	border: none;
-}
-
-textarea {
-  outline: none;
-  border: none;
-}
-
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
-
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; }
-input:focus::-moz-placeholder { color:transparent; }
-input:focus:-ms-input-placeholder { color:transparent; }
-
-textarea:focus::-webkit-input-placeholder { color:transparent; }
-textarea:focus:-moz-placeholder { color:transparent; }
-textarea:focus::-moz-placeholder { color:transparent; }
-textarea:focus:-ms-input-placeholder { color:transparent; }
-
-input::-webkit-input-placeholder { color: #adadad;}
-input:-moz-placeholder { color: #adadad;}
-input::-moz-placeholder { color: #adadad;}
-input:-ms-input-placeholder { color: #adadad;}
-
-textarea::-webkit-input-placeholder { color: #adadad;}
-textarea:-moz-placeholder { color: #adadad;}
-textarea::-moz-placeholder { color: #adadad;}
-textarea:-ms-input-placeholder { color: #adadad;}
-
-/*---------------------------------------------*/
-button {
-	outline: none !important;
-	border: none;
-	background: transparent;
-}
-
-button:hover {
-	cursor: pointer;
-}
-
-iframe {
-	border: none !important;
-}
-
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
-.txt1 {
-  font-family: 'Poppins';
-  font-size: 14px;
-  line-height: 1.5;
-  color: #666666;
-}
-
-.txt2 {
-  font-family: 'Poppins';
-  font-size: 14px;
-  line-height: 1.5;
-  color: #333333;
-  text-transform: uppercase;
-}
-
-.bg1 {background-color: #3b5998}
-.bg2 {background-color: #1da1f2}
-.bg3 {background-color: #ea4335}
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
-.logo{
-  position: absolute;
-  right: 2em;
-  color: white;
-  font-family: 'Cabin', sans-serif;
-  font-weight: 600;
-  padding: 20px;
-}
-
-.container-login100 { 
-  
-  width: min-content;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  
-}
-
-.wrap-login100 {
-  height:min-content;
-  width: 450px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: #333333 10px 10px 20px ;
-}
-
-
-/*------------------------------------------------------------------
-[ Form ]*/
 .hidden{
     display: none;
 }
-.oform{
-    width: 100%;
 
+button{
+	width: 300px;
 }
-.login100-form {
-    width: 100%;
-}
-
-.login100-form-title {
-  display: block;
-  font-family: 'Poppins';
-  font-weight: bold;
-  font-size: 2em;
-  color: #333333;
-  line-height: 1.2;
-  text-align: center;
+.r-pill {
+	border: 0;
+	padding-bottom:20px;
+	margin: 0;
 }
 
-
-
-/*------------------------------------------------------------------
-[ Input ]*/
-#wrap-input100{
-    display: flex;
-    justify-content: space-evenly;
-    padding: 10px;
-}
-.wrap-input100 {
-  width: 100%;
-  position: relative;
-  border-bottom: 2px solid #d9d9d9;
+/* radio groups need a legend */
+.r-pill legend {
+	display: block;
+	font-size: inherit;
+	font-weight: bold;
+	margin-bottom: .5em;
+	padding: 0;
+	width: 100%;
 }
 
-.label-input100 {
-  font-family: 'poppins';
-  font-size: 14px;
-  color: #333333;
-  line-height: 1.5;
-  padding-left: 7px;
+/*
+	Optional inner wrapper (<div>) to provide additional styling.
+*/
+.r-pill__group {
+	background: #fafafa;
+	border: 1px solid #083851;
+	border-radius: 2em;
+	display: inline-block;
+	padding: .25em;
 }
 
-.input100 {
-  font-family: 'Poppins';
-  font-size: 16px;
-  color: #333333;
-  line-height: 1.2;
-
-  display: block;
-  width: 100%;
-  height: 55px;
-  background: transparent;
-  padding: 0 7px 0 43px;
+.r-pill__item {
+	display: inline-block;
+	position: relative;
 }
 
-
-/*---------------------------------------------*/
-.focus-input100 {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
+.r-pill input {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: none;
+	border: 2px solid;
+	height: 100%;
+	left: 0;
+	opacity: .00001;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 2;
 }
 
-.focus-input100::after {
-  content: attr(data-symbol);
-  font-family: Material-Design-Iconic-Font;
-  color: #adadad;
-  font-size: 22px;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  height: calc(100% - 20px);
-  bottom: 0;
-  left: 0;
-  padding-left: 13px;
-  padding-top: 3px;
+.r-pill__item label {
+	border-radius: 2em;
+	border: 2px solid transparent;
+	color: #083851;
+	display: block;
+	padding: .25em .75em;
 }
 
-.focus-input100::before {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #7f7f7f;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
+.r-pill__item input:hover ~ label,
+.r-pill__item label:hover {
+	background: #E2F1FD;
+	border-color: #2196f3;
 }
 
-
-.input100:focus + .focus-input100::before {
-  width: 100%;
+.r-pill[disabled] .r-pill__item input:checked + label:hover,
+.r-pill__item input:checked + label {
+	background: #2196f3;
+	color: #fff;
 }
 
-.has-val.input100 + .focus-input100::before {
-  width: 100%;
+.r-pill__item label:after {
+	border: 2px solid;
+	border-color: rgba(0,0,0,0);
+	border-radius: 2em;
+	bottom: 0;
+	content: "";
+	left: 0;
+	pointer-events: none; /* 1 */
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition:
+		bottom .2s ease-in-out,
+		border-color .2s ease-in-out,
+		left .2s ease-in-out,
+		right .2s ease-in-out,
+		top .2s ease-in-out;
+	/*
+		1. Don't like pointer-events?
+			 then use z-index: -1;
+			 but we don't want this getting in the way
+			 of touch / mouse clicks.
+	*/
 }
 
-.input100:focus + .focus-input100::after {
-  color: #2185d6;
-}
-
-.has-val.input100 + .focus-input100::after {
-  color: #2185d6;
-
+.r-pill__item input:focus ~ label:after  {
+	border-color: #2196f3;
+	bottom: -.25em;
+	left: -.25em;
+	right: -.25em;
+	top: -.25em;
 }
 
 
-/*------------------------------------------------------------------
-[ Button ]*/
-.container-login100-form-btn {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/**
+ * Disabled
+ */
+.r-pill[disabled],
+.r-pill__item input[disabled] + label {
+	opacity: .5;
 }
 
-.wrap-login100-form-btn {
-  width: 100%;
-  display: block;
-  position: relative;
-  z-index: 1;
-  border-radius: 25px;
-  overflow: hidden;
-  margin: 0 auto;
-
-  box-shadow: 0 5px 30px 0px rgba(3, 216, 222, 0.2);
-  -moz-box-shadow: 0 5px 30px 0px rgba(3, 216, 222, 0.2);
-  -webkit-box-shadow: 0 5px 30px 0px rgba(3, 216, 222, 0.2);
-  -o-box-shadow: 0 5px 30px 0px rgba(3, 216, 222, 0.2);
-  -ms-box-shadow: 0 5px 30px 0px rgba(3, 216, 222, 0.2);
+.r-pill__item input[disabled] ~ label,
+.r-pill__item input[disabled] ~ label:hover,
+.r-pill[disabled] label:hover {
+	background: transparent;
+	border-color: transparent;
+	cursor: not-allowed;
 }
-
-.login100-form-bgbtn {
-  position: absolute;
-  z-index: -1;
-  width: 300%;
-  height: 100%;
-  background: -webkit-linear-gradient(right, #199df5, #77c2ff, #1da3a5, #05206b);
-  top: 0;
-  left: -100%;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
-}
-
-.login100-form-btn {
-  font-family: 'Poppins';
-  font-size: 16px;
-  color: #fff;
-  line-height: 1.2;
-  text-transform: uppercase;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  width: 100%;
-  height: 50px;
-}
-
-.wrap-login100-form-btn:hover .login100-form-bgbtn {
-  left: 0;
-}
-
-.signup{
-  display: flex;
-  justify-content: center;
-  margin-top: 1em;
-  gap: .5em;
-}
-
-/*//////////////////////////////////////////////////////////////////
-[ Responsive ]*/
-
-@media (max-width: 576px) {
-  .wrap-login100 {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-} 

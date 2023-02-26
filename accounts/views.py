@@ -2,6 +2,8 @@ from django.views.generic import CreateView, TemplateView
 from django.core.files.storage import FileSystemStorage
 from django.utils.decorators import method_decorator
 from .models import NGOModel, VolunteerModel
+from events.models import volunteer_event , events
+
 from .forms import SignUpForm
 from .custom_decorators import logout_required
 import logging
@@ -53,7 +55,7 @@ class SignUpView(CreateView):
                     bio = form.cleaned_data.get('bio')
                     causes = form.cleaned_data.get('causes')
                     no_of_employees = form.cleaned_data.get('no_of_employees')
-                    achievements = form.cleaned_data.get('achievements')
+                    # achievements = form.cleaned_data.get('achievements')
                     causes = form.cleaned_data.get('causes')
 
 
@@ -69,8 +71,10 @@ class SignUpView(CreateView):
                         ,interests=causes,phone=phone,company_name=first_name,address=address,
                         website=website,bio=bio)
                     else:
+                        print("in")
                         user = VolunteerModel.objects.create(username=username, email=email, 
-                        password=password, role=ShortRoleType.VOLUNTEER, profile_image=logo_name)
+                        password=password, role=ShortRoleType.VOLUNTEER, profile_image=logo_name
+                        ,interests=causes,phone=phone, first_name=first_name , last_name=last_name,bio=bio)
                     
                     user.set_password(password)
                     user.save()
@@ -80,6 +84,9 @@ class SignUpView(CreateView):
                         with open(f"media/{logo_name}", "wb+") as f:
                             for chunk in logo.chunks():
                                 f.write(chunk)
+                    print("user created")
+                    return redirect(reverse_lazy('home'))
+
                 else:
                     print("Form data is invalid")
             else:
@@ -88,3 +95,19 @@ class SignUpView(CreateView):
         except Exception as e:
             print(f"some error occurred {e}")
             return redirect(reverse_lazy('home'))
+
+
+
+def dashboard(request):
+    if(request.user.is_authenticated):
+        events_of_ngo = events.objects.filter(ngo_id=request.user.id)
+        print(events_of_ngo)
+
+        # print(request.user.ngomodel.event_set.all())
+        return render(request,'dashboard.html',context={"events_list": events_of_ngo})
+    else:
+        return redirect(reverse_lazy('login'))
+
+
+def profile(request):
+       return dashboard(request)
